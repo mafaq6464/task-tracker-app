@@ -7,19 +7,45 @@ const HeaderWrapper = styled.div`
     color: #fff;
 `;
 
+const Container = styled.div`
+    padding: 0 15px;
+    max-width: 1160px;
+    margin: 0 auto;
+`;
+
 export default class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null
+            names: [
+                'John',
+                'chris',
+                'david',
+                'Mortal',
+                'Johny'
+            ],
+            searchTerm: ''
         }
     }
+
+    editSearch = (e) => {
+        this.setState({
+            searchTerm: e.target.value
+        })
+    }
+    searchResults = () => {
+        return this.state.names.filter( name => name.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(filteredName => <> {filteredName} <br/></>)
+    }
+
     render(){
+        
         return (
             <HeaderWrapper>
-                <container>
-                    test
-                </container>
+                <Container>
+                    <input value={this.state.searchTerm} onChange={this.editSearch} placeholder="enter name to search" />
+                    <h4>Search Results:</h4>
+                    <p>{this.searchResults()}</p>
+                </Container>
             </HeaderWrapper>
         );
     }   
