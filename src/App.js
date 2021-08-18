@@ -8,7 +8,7 @@ function App() {
     <div className="App">
         <Header/>
         <TasksComponents title="Tasks:" />
-        <AddTasksComponents />
+        <AddTasksComponents title="Add Tasks:" />
     </div>
   );
 }

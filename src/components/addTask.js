@@ -31,6 +31,10 @@ const AddTaskFormInput = styled.input`
     border: none;
     text-transform: capitalize;
     width: 80%;
+    &:focus {
+        outline: none;
+        border: none;
+    }
 `;
 
 const AddTaskFormBtn = styled.button`
@@ -44,16 +48,15 @@ const AddTaskFormBtn = styled.button`
     cursor: pointer;
 `;
 
-const AddTasksComponents = () => {
-
-    const addTask = () => {
+const AddTasksComponents = (props) => {
+    const addTask = (event) => {
+        event.preventDefault();
         console.log("task submitted");
     }
-
     return (
         <AddTaskWrapper>
             <Container>
-                <TaskTitle>Add Tasks:</TaskTitle>
+                <TaskTitle>{props.title}</TaskTitle>
                 <AddTaskForm onSubmit={addTask}>
                     <AddTaskFormInput placeholder="add task" />
                     <AddTaskFormBtn type="submit">Add</AddTaskFormBtn>
