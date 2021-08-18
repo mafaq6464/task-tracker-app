@@ -13,6 +13,11 @@ const Container = styled.div`
     margin: 0 auto;
 `;
 
+const SearchList = styled.ul`
+    list-style-type: none;
+    padding: 0;
+`;
+
 export default class Header extends Component {
     constructor(props) {
         super(props);
@@ -34,7 +39,9 @@ export default class Header extends Component {
         })
     }
     searchResults = () => {
-        return this.state.names.filter( name => name.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(filteredName => <> {filteredName} <br/></>)
+        return this.state.names.filter( name => name.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(filteredName => 
+        <li key={filteredName}> {filteredName}</li>
+        )
     }
 
     render(){
@@ -44,7 +51,7 @@ export default class Header extends Component {
                 <Container>
                     <input value={this.state.searchTerm} onChange={this.editSearch} placeholder="enter name to search" />
                     <h4>Search Results:</h4>
-                    <p>{this.searchResults()}</p>
+                    <SearchList>{this.searchResults()}</SearchList>
                 </Container>
             </HeaderWrapper>
         );
