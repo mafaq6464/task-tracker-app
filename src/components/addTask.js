@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React,{useState} from "react";
 
 const AddTaskWrapper = styled.div`
     padding: 20px 0;
@@ -49,15 +50,16 @@ const AddTaskFormBtn = styled.button`
 `;
 
 const AddTasksComponents = (props) => {
-    
-    
-
+    const [ inputValue, setinputValue ] = useState("");
     return (
         <AddTaskWrapper>
             <Container>
                 <TaskTitle>{props.title}</TaskTitle>
-                <AddTaskForm onSubmit={props.addTask}>
-                    <AddTaskFormInput value={props.inputValueProp} onChange={props.editInputProp} placeholder="add task" />
+                    <AddTaskForm onSubmit={(e)=> {
+                        e.preventDefault();
+                        props.addTask(inputValue)
+                    }}>
+                    <AddTaskFormInput value={inputValue} onChange={(e)=>setinputValue(e.target.value)} placeholder="add task" />
                     <AddTaskFormBtn type="submit" disabled={ props.inputValueProp === '' ? 'disabled' : ''  }>Add</AddTaskFormBtn>
                 </AddTaskForm>
             </Container>

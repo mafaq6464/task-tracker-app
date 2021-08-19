@@ -8,47 +8,34 @@ function App() {
 
   const [tasks, setTasks] = useState([
       {
-          "id": "0",
+          id: 0,
           "taskName": "doctors appointment",
       },
       {
-          "id": "1",
-          "taskName": "office meeting",
+          id: 1,
+          taskName: "office meeting",
       },
       {
-          "id": "2",
-          "taskName": "shopping",
+          id: 2,
+          taskName: "shopping",
       }
   ])
 
-  const [ inputValue, setinputValue ] = useState("");
-
-  const deleteList = (index) => {
-      console.log("id", index.target.id);
-      return setTasks(tasks.filter( task => task.id !== index.target.id ));
+  const deleteList = (id) => {
+      setTasks(tasks.filter( task => task.id !== id ));
   }
 
-  const addTask = (event) => {
-    event.preventDefault();
-    console.log("task submitted", tasks.length);
-    return tasks.push(
-      {
-        "id": tasks.length,
-        "taskName": inputValue,
-      }
-    );
-  }
-
-  const editInput = (e) => {
-    console.log("Edit Input", inputValue);
-    return setinputValue( e.target.value );
+  const addTask = (data) => {
+    const copy = [...tasks];
+    copy.push({id:tasks.length,taskName:data});
+    setTasks(copy);
   }
 
   return (
     <div className="App">
         <Header/>
         <TasksComponents title="Tasks:" deleteList={deleteList} tasks={tasks} />
-        <AddTasksComponents title="Add Tasks:" addTask={addTask} inputValueProp={inputValue} editInputProp={editInput} />
+        <AddTasksComponents title="Add Tasks:" addTask={addTask} />
     </div>
   );
 }

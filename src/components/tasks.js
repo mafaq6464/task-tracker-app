@@ -39,11 +39,11 @@ const TasksComponents = (props) => {
         <Container>
             <h3>{props.title}</h3>
             <TaskListWrap>
-                { props.tasks.map( task => 
+                { props.tasks.map( (task) => 
                     <TaskList key={task.id}>
                         <TaskTitle>
                             {task.taskName}
-                            <CrossIconBtn id={task.id} onClick={props.deleteList}>x</CrossIconBtn>
+                            <CrossIconBtn id={task.id} onClick={()=>props.deleteList(task.id)}>x</CrossIconBtn>
                         </TaskTitle>
                     </TaskList>
                 )}
