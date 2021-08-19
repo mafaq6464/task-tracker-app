@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -35,35 +34,16 @@ const CrossIconBtn = styled.button`
 `;
 
 const TasksComponents = (props) => {
-    const [tasks, setTasks] = useState([
-        {
-            "id": "0",
-            "taskName": "doctors appointment",
-        },
-        {
-            "id": "1",
-            "taskName": "office meeting",
-        },
-        {
-            "id": "2",
-            "taskName": "shopping",
-        }
-    ])
-
-    const deleteList = (index) => {
-        console.log("id", index.target.id);
-        return setTasks(tasks.filter( task => task.id !== index.target.id ));
-    }
 
     return (
         <Container>
             <h3>{props.title}</h3>
             <TaskListWrap>
-                { tasks.map( task => 
+                { props.tasks.map( task => 
                     <TaskList key={task.id}>
                         <TaskTitle>
                             {task.taskName}
-                            <CrossIconBtn id={task.id} onClick={deleteList}>x</CrossIconBtn>
+                            <CrossIconBtn id={task.id} onClick={props.deleteList}>x</CrossIconBtn>
                         </TaskTitle>
                     </TaskList>
                 )}

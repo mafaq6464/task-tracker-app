@@ -49,17 +49,16 @@ const AddTaskFormBtn = styled.button`
 `;
 
 const AddTasksComponents = (props) => {
-    const addTask = (event) => {
-        event.preventDefault();
-        console.log("task submitted");
-    }
+    
+    
+
     return (
         <AddTaskWrapper>
             <Container>
                 <TaskTitle>{props.title}</TaskTitle>
-                <AddTaskForm onSubmit={addTask}>
-                    <AddTaskFormInput placeholder="add task" />
-                    <AddTaskFormBtn type="submit">Add</AddTaskFormBtn>
+                <AddTaskForm onSubmit={props.addTask}>
+                    <AddTaskFormInput value={props.inputValueProp} onChange={props.editInputProp} placeholder="add task" />
+                    <AddTaskFormBtn type="submit" disabled={ props.inputValueProp === '' ? 'disabled' : ''  }>Add</AddTaskFormBtn>
                 </AddTaskForm>
             </Container>
         </AddTaskWrapper>
